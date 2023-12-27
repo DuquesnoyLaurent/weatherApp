@@ -1,9 +1,12 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
+    android.buildFeatures.buildConfig = true
     namespace = "com.example.wetter"
     compileSdk = 33
 
@@ -26,6 +29,11 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+        }
+        debug {
+            buildConfigField("String", "apiKey",
+                gradleLocalProperties(rootDir).getProperty("api.key")
             )
         }
     }
@@ -61,9 +69,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialisation-converter:1.0.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialisation-json:1.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
