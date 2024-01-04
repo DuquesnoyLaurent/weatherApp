@@ -1,7 +1,6 @@
-package com.example.wetter.data.remote.api
+package com.example.wetter.data.local
 
 import com.example.wetter.model.Location
-
 class LocationRepository {
     fun getLocations(): List<Location> {
         return listOf(
