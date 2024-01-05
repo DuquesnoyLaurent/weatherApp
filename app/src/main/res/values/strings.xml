@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WETTER</string>
+    <string name="loading_locations">loading…</string>
 </resources>

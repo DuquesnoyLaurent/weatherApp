@@ -12,27 +12,30 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class LocationsListViewModel(locationService: LocationService) : ViewModel() {
     private val _locationService = locationService
-    private val uiState = MutableStateFlow(LocationsListUiState())
+    private val _uiState = MutableStateFlow(LocationsListUiState())
+    val uiState = _uiState.asStateFlow()
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
-
-    private fun getLocations(): List<Location> {
+    fun getLocations(){
         var locationsList: List<Location> = emptyList()
 
         coroutineScope.launch {
             try{
                 locationsList = _locationService.getLocations()
             }catch(e : Exception){
-                uiState.value.locationsIoError = e.message
+                _uiState.value.locationsIoError = e.message
             }
         }
 
-        TODO("implement roomDB first")
+        _uiState.update { currentState -> currentState.copy(locationsList = locationsList) }
     }
+
     companion object {
         val Initiator : ViewModelProvider.Factory = viewModelFactory {
             initializer {
