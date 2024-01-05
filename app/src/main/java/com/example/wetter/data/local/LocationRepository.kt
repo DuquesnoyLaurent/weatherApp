@@ -21,12 +21,12 @@ class LocationRepository(
     private suspend fun seedLocations() {
         locationDao.insertMany(
             listOf(
-                convertToEntity(Location("Ghent", "51.053822", "3.722270")),
-                convertToEntity(Location("Brussels", "50.850346", "4.351721")),
-                convertToEntity(Location("New York", "40.712776", "-74.005974")),
-                convertToEntity(Location("Berlin", "52.520008", "13.404954")),
-                convertToEntity(Location("Beijing", "39.904202", "116.407394")),
-                convertToEntity(Location("Sydney", "-33.865143", "151.209900"))
+                convertToEntity(Location( "51.053822", "3.722270", "Ghent")),
+                convertToEntity(Location( "50.850346", "4.351721","Brussels")),
+                convertToEntity(Location( "40.712776", "-74.005974","New York")),
+                convertToEntity(Location( "52.520008", "13.404954", "Berlin")),
+                convertToEntity(Location( "39.904202", "116.407394", "Beijing")),
+                convertToEntity(Location( "-33.865143", "151.209900", "Sydney"))
             )
         )
     }

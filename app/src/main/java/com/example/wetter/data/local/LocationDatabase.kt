@@ -20,9 +20,7 @@ abstract class LocationDatabase : RoomDatabase() {
                     context,
                     LocationDatabase::class.java,
                     "location_database"
-                )
-                    .createFromAsset("database/locations.db")
-                    .build()
+                ).build()
 
                 INSTANCE = instance
                 instance

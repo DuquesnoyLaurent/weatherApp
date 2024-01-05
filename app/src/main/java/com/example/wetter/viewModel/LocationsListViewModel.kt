@@ -10,7 +10,6 @@ import com.example.wetter.abstractions.LocationService
 import com.example.wetter.model.Location
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -20,7 +19,7 @@ class LocationsListViewModel(locationService: LocationService) : ViewModel() {
     private val _locationService = locationService
     private val _uiState = MutableStateFlow(LocationsListUiState())
     val uiState = _uiState.asStateFlow()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     fun getLocations(){
         var locationsList: List<Location> = emptyList()
@@ -28,12 +27,14 @@ class LocationsListViewModel(locationService: LocationService) : ViewModel() {
         coroutineScope.launch {
             try{
                 locationsList = _locationService.getLocations()
+                _uiState.update { currentState ->
+                    currentState.copy(locationsList = locationsList, locationsLoaded = true) }
             }catch(e : Exception){
                 _uiState.value.locationsIoError = e.message
             }
         }
 
-        _uiState.update { currentState -> currentState.copy(locationsList = locationsList) }
+
     }
 
     companion object {
