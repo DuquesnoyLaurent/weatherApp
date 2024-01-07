@@ -90,8 +90,7 @@ fun WeatherInfoItem(
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         icon()
-        Column(
-        ) {
+        Column {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleSmall,

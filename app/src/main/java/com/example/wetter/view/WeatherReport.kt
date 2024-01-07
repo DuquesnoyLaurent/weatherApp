@@ -74,11 +74,10 @@ fun WeatherReport(
                     color = MaterialTheme.colorScheme.error
                 )
                 Text(
-                    text = weatherReportUiState.weatherReportError ?: "",
+                    text = weatherReportUiState.weatherReportError,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.error
                 )
             }
     }
-
 }
