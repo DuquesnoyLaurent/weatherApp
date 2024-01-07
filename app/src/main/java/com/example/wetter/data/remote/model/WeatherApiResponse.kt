@@ -2,7 +2,8 @@ package com.example.wetter.data.remote.model
 
 data class WeatherApiResponse(
     val weather: weather,
-    val main: main
+    val main: main,
+    val wind: wind
 )
 
 data class weather(

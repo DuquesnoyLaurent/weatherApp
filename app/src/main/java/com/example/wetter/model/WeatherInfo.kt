@@ -2,9 +2,15 @@ package com.example.wetter.model
 
 //todo icons?
 data class WeatherInfo(
+    val currentTemperature: Double,
+    val feelsLike: Double,
     val temperatureMin: Double,
-    val location: Location,
+    val temperatureMax: Double,
+
     val weatherDescription: String,
-    val humidity: String,
-    val windSpeed: String,
+
+    val humidity: Double,
+
+    val windSpeed: Double,
+    val windDirection: Int
 )

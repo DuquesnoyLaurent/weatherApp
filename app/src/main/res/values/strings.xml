@@ -3,4 +3,6 @@
     <string name="loading_locations">loading…</string>
     <string name="locationsList">locationsList</string>
     <string name="weatherReport">weatherReport</string>
+    <string name="loadingWeather">Loading weather data…</string>
+    <string name="loadingWeatherFailed">Failed loading weather data</string>
 </resources>
