@@ -10,7 +10,6 @@ import com.example.wetter.model.WeatherInfo
 class WeatherServiceImpl(private val weatherRepository: WeatherRepository) : WeatherService {
     override suspend fun getWeatherForLocation(location: Location): WeatherInfo {
         val apiResponse = createAndSendWeatherRequestForLocation(location)
-        //todo handle erroneous response
 
         return parseApiResponse(apiResponse)
     }
@@ -18,13 +17,11 @@ class WeatherServiceImpl(private val weatherRepository: WeatherRepository) : Wea
     private suspend fun createAndSendWeatherRequestForLocation(location: Location) : WeatherApiResponse{
         val apiKey = BuildConfig.apiKey
 
-        val response = weatherRepository.getWeatherForLocation(
+        return weatherRepository.getWeatherForLocation(
             latitude = location.latitude,
             longitude = location.longitude,
             token = apiKey
         )
-
-        return response
     }
 
     private fun parseApiResponse(weatherApiResponse: WeatherApiResponse) : WeatherInfo{
