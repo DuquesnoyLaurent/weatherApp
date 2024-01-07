@@ -18,11 +18,13 @@ class WeatherServiceImpl(private val weatherRepository: WeatherRepository) : Wea
     private suspend fun createAndSendWeatherRequestForLocation(location: Location) : WeatherApiResponse{
         val apiKey = BuildConfig.apiKey
 
-        return weatherRepository.getWeatherForLocation(
+        val response = weatherRepository.getWeatherForLocation(
             latitude = location.latitude,
             longitude = location.longitude,
             token = apiKey
         )
+
+        return response
     }
 
     private fun parseApiResponse(weatherApiResponse: WeatherApiResponse) : WeatherInfo{
@@ -31,7 +33,7 @@ class WeatherServiceImpl(private val weatherRepository: WeatherRepository) : Wea
             feelsLike = weatherApiResponse.main.feels_like,
             temperatureMin = weatherApiResponse.main.temp_min,
             temperatureMax = weatherApiResponse.main.temp_max,
-            weatherDescription = weatherApiResponse.weather.description,
+            weatherDescription = weatherApiResponse.weather[0].description,
             humidity = weatherApiResponse.main.humidity,
             windSpeed = weatherApiResponse.wind.speed,
             windDirection = weatherApiResponse.wind.deg
