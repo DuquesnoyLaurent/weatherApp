@@ -5,4 +5,11 @@
     <string name="weatherReport">weatherReport</string>
     <string name="loadingWeather">Loading weather data…</string>
     <string name="loadingWeatherFailed">Failed loading weather data</string>
+    <string name="feelsLike">Feels like</string>
+    <string name="temperature">Temperature</string>
+    <string name="temperatureMin">Temperature Min</string>
+    <string name="temperatureMax">Temperature Max</string>
+    <string name="humidity">Humidity</string>
+    <string name="windSpeed">Wind speed</string>
+    <string name="windDirection">Wind Direction</string>
 </resources>
