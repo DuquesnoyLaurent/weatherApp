@@ -16,6 +16,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -48,7 +49,8 @@ fun WeatherReport(
                 CircularProgressIndicator(
                     modifier = Modifier
                         .height(32.dp)
-                        .width(32.dp),
+                        .width(32.dp)
+                        .testTag("loading"),
                     color = MaterialTheme.colorScheme.primary
                 )
             }
@@ -63,7 +65,8 @@ fun WeatherReport(
             Column(
                 modifier = modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                    .padding(horizontal = 16.dp, vertical = 16.dp)
+                    .testTag("failed"),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
